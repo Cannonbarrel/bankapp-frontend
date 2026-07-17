@@ -1,12 +1,12 @@
 let BASE_URL = "";
-let isBackendLocal = true;
-let isBackendRemote = false;
+let isBackendLocal = false;
+let isBackendRemote = true;
 
 if(isBackendLocal){
     BASE_URL = (import.meta.env && import.meta.env.VITE_API_BASE) || 'http://localhost:5000';
 }
 if(isBackendRemote){
-    BASE_URL = (import.meta.env && import.meta.env.VITE_API_BASE) || 'https://springbootrestapibackend-with-db.onrender.com';
+    BASE_URL = (import.meta.env && import.meta.env.VITE_API_BASE) || 'https://bankapp-backend-production.up.railway.app';
 }
 
 // Inside DataService.js[cite: 2]
