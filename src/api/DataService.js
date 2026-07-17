@@ -2,13 +2,12 @@ let BASE_URL = "";
 let isBackendLocal = false;
 let isBackendRemote = true;
 
-if(isBackendLocal){
-    BASE_URL = (import.meta.env && import.meta.env.VITE_API_BASE) || 'http://localhost:5000';
+if (isBackendLocal) {
+    BASE_URL = 'http://localhost:5000';
 }
-if(isBackendRemote){
-    BASE_URL = (import.meta.env && import.meta.env.VITE_API_BASE) || 'https://bankapp-backend-production.up.railway.app';
+if (isBackendRemote) {
+    BASE_URL = 'https://bankapp-backend-production.up.railway.app';
 }
-
 // Inside DataService.js[cite: 2]
 async function request(path, opts = {}) {
   const url = `${BASE_URL}${path}` //[cite: 2]
