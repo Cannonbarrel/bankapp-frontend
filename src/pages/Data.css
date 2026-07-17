@@ -1,0 +1,282 @@
+.customers{
+  max-width:1100px;
+  margin:40px auto;
+  padding:0 20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.customer-row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:var(--card);
+  padding:12px 16px;
+  border-radius:10px;
+  box-shadow:var(--shadow);
+}
+.customer-avatar{
+  width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,#e6f0ff,#dff4ff);display:inline-flex;align-items:center;justify-content:center;color:var(--primary);font-weight:700
+}
+.customer-name{font-size:16px;color:var(--text);margin:0}
+.customer-id{font-size:12px;color:var(--muted);margin-left:auto}
+
+@media (max-width:600px){
+  .customer-id{display:none}
+}
+
+/* --- Added for banking actions --- */
+.customer-balance {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 4px 0 0;
+}
+
+.customer-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.btn-deposit,
+.btn-withdraw,
+.btn-delete,
+.btn-create {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 150ms ease;
+}
+
+.btn-deposit,
+.btn-create {
+  background: var(--positive);
+  color: #10240f;
+}
+
+.btn-withdraw {
+  background: var(--accent);
+  color: #2a1503;
+}
+
+.btn-delete {
+  background: var(--negative);
+  color: #2a0505;
+}
+
+.btn-login-as {
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.btn-login-as:hover {
+  background: var(--accent);
+  color: #2a1503;
+}
+
+.btn-deposit:hover,
+.btn-withdraw:hover,
+.btn-delete:hover,
+.btn-create:hover {
+  opacity: 0.85;
+}
+
+.btn-deposit:disabled,
+.btn-create:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.create-user-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.create-user-input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(180, 110, 40, 0.3);
+  background: rgba(30, 20, 10, 0.6);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.create-user-input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+@media (max-width: 600px) {
+  .customer-row {
+    flex-wrap: wrap;
+  }
+  .customer-actions {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* --- Customer Dashboard view --- */
+.customer-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  color: var(--text);
+}
+
+.btn-logout {
+  border: 1px solid rgba(180, 110, 40, 0.4);
+  background: rgba(30, 20, 10, 0.6);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.btn-logout:hover {
+  background: rgba(180, 110, 40, 0.25);
+}
+
+.balance-cards {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.balance-card {
+  flex: 1 1 200px;
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  text-align: center;
+}
+
+.balance-label {
+  margin: 0 0 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.balance-amount {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.customer-quick-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.customer-quick-actions .btn-deposit,
+.customer-quick-actions .btn-withdraw {
+  padding: 10px 18px;
+  font-size: 14px;
+}
+
+.transfer-form {
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.transfer-form h3 {
+  margin: 0 0 14px;
+  color: var(--text);
+}
+
+.transfer-fields {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.transfer-input,
+.transfer-select {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(180, 110, 40, 0.3);
+  background: rgba(30, 20, 10, 0.6);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.transfer-input {
+  flex: 1 1 140px;
+}
+
+.transfer-select {
+  flex: 1 1 200px;
+}
+
+.transfer-input:focus,
+.transfer-select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.btn-transfer {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #10240f;
+  background: var(--positive);
+  cursor: pointer;
+  transition: opacity 150ms ease;
+}
+
+.btn-transfer:hover {
+  opacity: 0.85;
+}
+
+.btn-transfer:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.transfer-error {
+  margin: 12px 0 0;
+  color: var(--negative);
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .balance-cards {
+    flex-direction: column;
+  }
+}
