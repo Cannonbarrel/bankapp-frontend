@@ -1,5 +1,11 @@
 import { useState } from 'react'
 
+// Determine the correct backend URL (set isBackendLocal to false for production)
+const isBackendLocal = false;
+const BASE_URL = isBackendLocal 
+  ? 'http://localhost:5000' 
+  : 'https://bankapp-backend-production.up.railway.app';
+
 export default function Login({ onLoginSuccess }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -43,7 +49,8 @@ export default function Login({ onLoginSuccess }) {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/generate-token', {
+      // Updated to use the live Railway BASE_URL dynamic link!
+      const response = await fetch(`${BASE_URL}/generate-token`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
