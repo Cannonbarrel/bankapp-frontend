@@ -1,5 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 
+// Determine the correct backend URL (set isBackendLocal to false for production)
+const isBackendLocal = false;
+const BASE_URL = isBackendLocal 
+  ? 'http://localhost:5000' 
+  : 'https://bankapp-backend-production.up.railway.app';
+
 function decodeToken(token) {
   if (!token) return null
 
@@ -118,7 +124,7 @@ export default function Home({ token, onLogout }) {
   }
 
   async function loadCustomerAccount() {
-    const allRes = await fetch('http://localhost:5000/accounts', {
+    const allRes = await fetch(`${BASE_URL}/accounts`, {
       headers: getHeaders(),
     })
     if (!allRes.ok) throw new Error('Failed to load account index.')
@@ -138,7 +144,7 @@ export default function Home({ token, onLogout }) {
       throw new Error(`No account found for user '${username}'.`)
     }
 
-    const detailRes = await fetch(`http://localhost:5000/accounts/${accountId}`, {
+    const detailRes = await fetch(`${BASE_URL}/accounts/${accountId}`, {
       headers: getHeaders(),
     })
     if (!detailRes.ok) throw new Error('Failed to load customer account details.')
@@ -148,7 +154,7 @@ export default function Home({ token, onLogout }) {
   }
 
   async function loadAdminAccounts() {
-    const res = await fetch('http://localhost:5000/accounts', {
+    const res = await fetch(`${BASE_URL}/accounts`, {
       headers: getHeaders(),
     })
     if (!res.ok) throw new Error('Failed to load admin metrics.')
@@ -209,7 +215,7 @@ export default function Home({ token, onLogout }) {
     setActionMessage('')
 
     try {
-      const res = await fetch(`http://localhost:5000/accounts/${accountId}/${endpoint}`, {
+      const res = await fetch(`${BASE_URL}/accounts/${accountId}/${endpoint}`, {
         method: 'POST',
         headers: getHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify({ amount, account_type: txAccountType }),
@@ -253,7 +259,7 @@ export default function Home({ token, onLogout }) {
     setActionMessage('')
 
     try {
-      const withdrawRes = await fetch(`http://localhost:5000/accounts/${accountId}/withdraw`, {
+      const withdrawRes = await fetch(`${BASE_URL}/accounts/${accountId}/withdraw`, {
         method: 'POST',
         headers: getHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify({ amount, account_type: fromType }),
@@ -264,7 +270,7 @@ export default function Home({ token, onLogout }) {
         throw new Error(withdrawData?.error || 'Transfer failed during withdrawal step.')
       }
 
-      const depositRes = await fetch(`http://localhost:5000/accounts/${accountId}/deposit`, {
+      const depositRes = await fetch(`${BASE_URL}/accounts/${accountId}/deposit`, {
         method: 'POST',
         headers: getHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify({ amount, account_type: toType }),
@@ -307,7 +313,7 @@ export default function Home({ token, onLogout }) {
     setActionMessage('')
 
     try {
-      const createRes = await fetch('http://localhost:5000/accounts', {
+      const createRes = await fetch(`${BASE_URL}/accounts`, {
         method: 'POST',
         headers: getHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify({
@@ -323,7 +329,7 @@ export default function Home({ token, onLogout }) {
       const createdId = getAccountId(created)
 
       if (createdId && savingsStart > 0) {
-        const savingsRes = await fetch(`http://localhost:5000/accounts/${createdId}/deposit`, {
+        const savingsRes = await fetch(`${BASE_URL}/accounts/${createdId}/deposit`, {
           method: 'POST',
           headers: getHeaders({ 'Content-Type': 'application/json' }),
           body: JSON.stringify({ amount: savingsStart, account_type: 'savings' }),
@@ -356,7 +362,7 @@ export default function Home({ token, onLogout }) {
     setActionMessage('')
 
     try {
-      const res = await fetch(`http://localhost:5000/accounts/${accountId}`, {
+      const res = await fetch(`${BASE_URL}/accounts/${accountId}`, {
         method: 'DELETE',
         headers: getHeaders(),
       })
